@@ -3,9 +3,6 @@
     {{#each users}}
     <p>{{username}}</p>
 
-
-    <button name="get-posts" id="get-posts">Show posts</button>
-
     <form action="/admin/user/{{_id}}" method="POST">
 
         <input type="hidden" name="_method" value="DELETE">

@@ -7,7 +7,7 @@ const healthData = data.health;
 const exerciseData = data.exercise;
 const groupData = data.groups;
 const xss = require('xss');
-
+const ObjectID = require('mongodb').ObjectID
 router.get('/', async (req, res) => {
     let users = [];
 
@@ -58,7 +58,8 @@ router.delete('/user/:id', async (req, res) => {
         await healthData.remove(user._id);
         const group_id = user.group_id;
         if (group_id != '') {
-            await groupData.removeUserFromGroup(group_id, user._id);
+            let uid = user._id.toHexString();
+            await groupData.removeUserFromGroup(group_id, uid);
         }
         for (let x of user.posts) {
             await postData.removePost(x);
@@ -75,7 +76,7 @@ router.delete('/post/:id', async (req, res) => {
     try {
         await postData.removePost(req.params.id);
     } catch (e) {
-        console.log(e);
+        //console.log(e);
     }
 
     res.redirect('/admin');

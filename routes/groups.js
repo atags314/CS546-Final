@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
         group = await groupData.get(group_id);
         exist = true;
     } catch (e) {
-        console.log(e);
+        //console.log(e);
     }
 
     if (exist) {
@@ -65,7 +65,6 @@ router.patch('/showAllGroups', async (req, res) => {
     
     try {
         user = await userData.get(userId);
-        console.log(user)
         const oldGroup_id = user.group_id;
         if (oldGroup_id != '') {
             await groupData.removeUserFromGroup(oldGroup_id, userId);

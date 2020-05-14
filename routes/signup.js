@@ -38,14 +38,14 @@ router.post('/', async (req, res) => {
         await userData.getByUsername(username);
         usedUsername = true;
     } catch (e) {
-        console.log('This username can be used!');
+        //console.log('This username can be used!');
     }
 
     try {
         await userData.getByEmail(email);
         usedEmail = true;
     } catch (e) {
-        console.log('This email can be used!');
+        //console.log('This email can be used!');
     }
 
     if (usedUsername || usedEmail) {
